@@ -2,7 +2,8 @@ import { useSearchParams } from "react-router-dom";
 import { AgGridReact } from 'ag-grid-react'; // React Data Grid Component
 import "ag-grid-community/styles/ag-grid.css"; // Mandatory CSS required by the Data Grid
 import "ag-grid-community/styles/ag-theme-quartz.css"; // Optional Theme applied to the Data Grid
-import { useState } from "react";
+import { useRef, useState } from "react";
+import UserManageSearch from "./sub-view/user-manage-search";
 
 function UserManageMain () {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -23,14 +24,30 @@ const [colDefs, setColDefs] = useState([
   { field: "userPhone" }
 ]);
 
+const [searchCondition, setSearchCondition] = useState({
+   inputData : '', nowInputSearchCondition : ''
+});
+
+
+  const getSearchCondition = (inputText, componentId) => {
+    setSearchCondition({
+      inputData : inputText,
+      nowInputSearchCondition : componentId
+    })
+  }
+  const pInputTag1 = <p>{searchCondition.inputData}</p>
+  const pInputTag2 = <p>{searchCondition.nowInputSearchCondition}</p>
     return (
 
 
         <div className="user-manage-main">
           <div >
-          <div>
-            {pTagValue}
-          </div>
+
+            <UserManageSearch getSearchCondition={getSearchCondition}></UserManageSearch>
+            <div>
+            {pInputTag1}
+            {pInputTag2}
+            </div>
           <div
             className="ag-theme-quartz" // applying the Data Grid theme
             style={{ height: 500 }} // the Data Grid will fill the size of the parent container
