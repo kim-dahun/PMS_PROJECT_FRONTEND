@@ -36,3 +36,5 @@ function UserLoginMain() {
     )
 
 }
+
+export default UserLoginMain;
