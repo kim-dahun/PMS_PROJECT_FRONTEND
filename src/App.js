@@ -12,14 +12,16 @@ function App() {
 
 
   return (
-      <div className="App">
+      <div className="App" >
           {/*      <header className="App-header">*/}
           {/*  <img src={logo} className="App-logo" alt="logo" />*/}
           {/*</header>*/}
               <Routes>
-                  <Route path="/" element={<AppMain />}>
+                    <Route path="/login" element={<UserLoginMain />} />
+
+                  <Route path="/main" element={<AppMain />}>
                       <Route path="user-main" element={<UserManageMain />} />
-                      <Route path="login" element={<UserLoginMain />} />
+
                   </Route>
               </Routes>
 

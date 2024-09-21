@@ -1,11 +1,11 @@
 import {useRef, useState} from "react";
 import {useSearchParams} from "react-router-dom";
-import {Form, Card, CardBody} from "react-bootstrap";
+import {Form, Card, CardBody, Container, Row, Col, Button} from "react-bootstrap";
 
 const userIdComponent = 'userId';
 const userPasswordComponent = 'userPassword';
 
-function UserLoginForm({getLoginUserInfo}) {
+function UserLoginForm({getLoginUserInfo, fnSubmit}) {
 
     const [userInfo, setUserInfo] = useState({
         userId: null, userPassword: null,
@@ -27,22 +27,34 @@ function UserLoginForm({getLoginUserInfo}) {
         getLoginUserInfo(userInfo);
     }
 
+    const fnLogin = () => {
+        fnSubmit();
+    }
 
     return (
 
         <div className={"loginForm"}>
-            <Card style={{ width : '80%' }}>
-            <Form>
-                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                    <Form.Label htmlFor={userIdComponent} column={true}>ID</Form.Label>
-                    <Form.Control id={userIdComponent} onInput={(event) => fnChangeUserInfo(event)}/>
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
-                    <Form.Label htmlFor={userPasswordComponent} column={true}>비밀번호</Form.Label>
-                    <Form.Control id={userPasswordComponent} onInput={(event) => fnChangeUserInfo(event)}/>
-                </Form.Group>
-            </Form>
-            </Card>
+
+                <h2 className="text-center mb-4">로그인</h2>
+                <Form>
+                    <Form.Group controlId="formBasicEmail">
+                        <Form.Label>아이디</Form.Label>
+                        <Form.Control type="text" placeholder="아이디 입력" onInput={(event) => fnChangeUserInfo(event)}/>
+                    </Form.Group>
+
+                    <Form.Group controlId="formBasicPassword">
+                        <Form.Label>비밀번호</Form.Label>
+                        <Form.Control type="password" placeholder="비밀번호 입력" onInput={(event) => fnChangeUserInfo(event)}/>
+                    </Form.Group>
+
+                    <Button variant="primary" className="w-100 mt-3" onClick={fnLogin}>
+                        로그인
+                    </Button>
+                    <Button variant="link" className="w-100 mt-2" >
+                        회원가입
+                    </Button>
+                </Form>
+
         </div>
 
     )
