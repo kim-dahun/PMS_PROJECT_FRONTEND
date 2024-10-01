@@ -32,7 +32,7 @@ function UserLoginMain() {
     }
 
     return (
-        <div className={"userLoginMain"} style={{ width: "100%" }}>
+        <div className={"userLoginMain"} style={{ width: "100%", padding : '30%' }}>
 
                     <UserLoginForm getLoginUserInfo={setLoginUserInfo} fnSubmit={fnSubmit} />
 
