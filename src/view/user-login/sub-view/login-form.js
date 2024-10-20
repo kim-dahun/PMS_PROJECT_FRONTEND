@@ -15,7 +15,7 @@ function UserLoginForm({getLoginUserInfo, fnSubmit}) {
         const id = event.target.id;
 
         const value = event.target.value;
-
+        console.log(id, value);
         switch (id) {
             case userIdComponent:
                 setUserInfo({...userInfo, userId: value});
@@ -24,11 +24,13 @@ function UserLoginForm({getLoginUserInfo, fnSubmit}) {
                 setUserInfo({...userInfo, userPassword: value});
                 break;
         }
-        getLoginUserInfo(userInfo);
+
+
     }
 
     const fnLogin = () => {
-        fnSubmit();
+
+        fnSubmit(userInfo);
     }
 
     return (
@@ -37,14 +39,14 @@ function UserLoginForm({getLoginUserInfo, fnSubmit}) {
 
                 <h2 className="text-center mb-4">로그인</h2>
                 <Form>
-                    <Form.Group controlId="formBasicEmail">
+                    <Form.Group>
                         <Form.Label>아이디</Form.Label>
-                        <Form.Control type="text" placeholder="아이디 입력" onInput={(event) => fnChangeUserInfo(event)}/>
+                        <Form.Control id={userIdComponent} type="text" placeholder="아이디 입력" onInput={(event) => fnChangeUserInfo(event)}/>
                     </Form.Group>
 
-                    <Form.Group controlId="formBasicPassword">
+                    <Form.Group>
                         <Form.Label>비밀번호</Form.Label>
-                        <Form.Control type="password" placeholder="비밀번호 입력" onInput={(event) => fnChangeUserInfo(event)}/>
+                        <Form.Control id={userPasswordComponent} type="password" placeholder="비밀번호 입력" onInput={(event) => fnChangeUserInfo(event)}/>
                     </Form.Group>
 
                     <Button variant="primary" className="w-100 mt-3" onClick={fnLogin}>

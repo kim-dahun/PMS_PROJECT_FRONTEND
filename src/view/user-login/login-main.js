@@ -11,14 +11,14 @@ function UserLoginMain() {
 
     const navigate = useNavigate();
 
-    const setLoginUserInfo = (userInfo) => {
-        setUserInfo({...userInfo});
+    const setLoginUserInfo = (userFormData) => {
+        setUserInfo({...userFormData});
     }
 
-    const fnSubmit = async () => {
-        console.log('이베늩')
-        const res = await http_post('/user/login',userInfo,null);
-        console.log(res);
+    const fnSubmit = async (userInfoData) => {
+
+        const res = await http_post('/user/login',userInfoData,null);
+
         if(res.data && res.data.resultData && res.data.statusCode === 200) {
             // 인증완료. 리다이렉트;
             localStorage.setItem('userInfo', JSON.stringify(res.data.resultData));
