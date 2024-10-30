@@ -26,7 +26,7 @@ const defaultErrorResult = {
     message : 'Axios Error'
 }
 
-const http_get = async (url, queryParams, customOpt) => {
+const http_get = async (url, queryParams , customOpt) => {
     try {
     return await axios.get(baseEndpoint + url, {
         ...defaultConfig, ...customOpt,

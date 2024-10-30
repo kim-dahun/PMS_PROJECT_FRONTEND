@@ -24,7 +24,9 @@ function UserLoginMain() {
             localStorage.setItem('userInfo', JSON.stringify(res.data.resultData));
 
             // 메뉴 권한 요청
-            navigate('/');
+            const _menuRes = await http_get('/menu/select/all');
+
+            navigate('/main');
 
         } else if(!res.data || res.data.statusCode != 200) {
             alert(res.data.message); // 로그인 실패와 관련된 알럿
