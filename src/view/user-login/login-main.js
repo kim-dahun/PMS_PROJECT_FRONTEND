@@ -19,7 +19,7 @@ function UserLoginMain() {
 
         const res = await http_post('/user/login',userInfoData,null);
 
-        if(res.data && res.data.resultData && res.data.statusCode === 200) {
+        if(res.data && res.data.resultData && res.data.statusCode === '200') {
             // 인증완료. 리다이렉트;
             localStorage.setItem('userInfo', JSON.stringify(res.data.resultData));
 

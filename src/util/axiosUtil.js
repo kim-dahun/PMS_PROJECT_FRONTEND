@@ -1,5 +1,10 @@
 import axios from "axios";
 
+const axiosIns = axios.create({
+    timeout: 6000,
+    withCredentials: true,
+})
+
 const defaultConfig = {
     params : null,
     headers : {
@@ -28,7 +33,7 @@ const defaultErrorResult = {
 
 const http_get = async (url, queryParams , customOpt) => {
     try {
-    return await axios.get(baseEndpoint + url, {
+    return await axiosIns.get(baseEndpoint + url, {
         ...defaultConfig, ...customOpt,
         params : queryParams ? queryParams : null
     })
@@ -53,7 +58,7 @@ const http_get = async (url, queryParams , customOpt) => {
 
 const http_post = async (url, body, customOpt) => {
     try {
-        return await axios.post(baseEndpoint + url, body, {
+        return await axiosIns.post(baseEndpoint + url, body, {
             ...defaultConfig, ...customOpt,
         });
     } catch (error) {
@@ -77,7 +82,7 @@ const http_post = async (url, body, customOpt) => {
 
 const http_put = async (url, body, customOpt) => {
     try {
-        return await axios.put(baseEndpoint+ url, body, {
+        return await axiosIns.put(baseEndpoint+ url, body, {
             ...defaultConfig, ...customOpt
         });
     } catch (error) {
@@ -101,7 +106,7 @@ const http_put = async (url, body, customOpt) => {
 
 const http_delete = async (url, params, customOpt) => {
     try {
-        return await axios.delete(baseEndpoint + url, {
+        return await axiosIns.delete(baseEndpoint + url, {
             ...defaultConfig, ...customOpt,
             params : params ? params : null
         });
